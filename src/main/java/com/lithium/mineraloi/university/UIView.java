@@ -23,10 +23,12 @@ public class UIView {
     }
 
     public BaseElement getTimelineMessage() {
-        return driver.createBaseElement(By.xpath(homeTimelineBase + "//div[@class='timeline-message']"));
+        return driver.createBaseElement(By.xpath(String.format( "%s//div[@class='timeline-message']",
+                homeTimelineBase)));
     }
 
     public BaseElement getTweetMessages() {
-        return driver.createBaseElement(By.xpath(homeTimelineBase + "//div[@class='message']"));
+        return driver.createBaseElement(By.xpath(String.format("%s//div[@class='message']",
+                homeTimelineBase)));
     }
 }

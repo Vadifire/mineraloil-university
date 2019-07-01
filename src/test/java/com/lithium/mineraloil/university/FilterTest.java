@@ -21,12 +21,7 @@ public class FilterTest extends BaseUITest {
     @Test
     void missingResultTest() {
         final String NO_RESULTS_MESSAGE = "No tweets match the filter.";
-        final StringBuilder filter = new StringBuilder();
-        final int MAX_TWEET_LENGTH = 280;
-        for (int i = 0; i < MAX_TWEET_LENGTH + 1; i++) {
-            filter.append("@");
-        }
-        controller.filterBy(filter.toString());
+        controller.filterBy("Expect no tweet to contain this 1232139128");
         Assertions.assertThat(controller.getTimelineMessage()).isEqualTo(NO_RESULTS_MESSAGE);
     }
 
