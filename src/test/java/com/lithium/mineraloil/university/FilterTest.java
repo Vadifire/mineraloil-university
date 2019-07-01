@@ -13,34 +13,32 @@ public class FilterTest extends BaseUITest {
 
     @BeforeAll
     static void setup() {
+        /* Setup Browser Driver */
         controller = new UIController();
     }
-
-    /*@DisplayName("Should display error message when API is down")
-    @Test
-    void apiErrorTest() {
-        String API_ERROR_MESSAGE = "Failed to fetch tweets from home timeline. Please try again later.";
-        controller.filterBy("anything");
-        Assertions.assertThat(controller.getTimelineMessage()).isEqualTo(API_ERROR_MESSAGE);
-    }*/
 
     @DisplayName("Should display no results message when no tweets match filter")
     @Test
     void missingResultTest() {
-        String NO_RESULTS_MESSAGE = "No tweets match the filter.";
-        controller.filterBy("hopeimnotinoneoftheseheretweets");
+        final String NO_RESULTS_MESSAGE = "No tweets match the filter.";
+        final StringBuilder filter = new StringBuilder();
+        final int MAX_TWEET_LENGTH = 280;
+        for (int i = 0; i < MAX_TWEET_LENGTH + 1; i++) {
+            filter.append("@");
+        }
+        controller.filterBy(filter.toString());
         Assertions.assertThat(controller.getTimelineMessage()).isEqualTo(NO_RESULTS_MESSAGE);
     }
 
-    @DisplayName("Should display no results message when no tweets match filter")
+    @DisplayName("Should display tweets that match the filter")
     @Test
     void filteredTweetsTest() {
-        String keyword = "the";
+        final String keyword = "the";
         controller.filterBy(keyword);
         controller.getTweetMessages()
-                .forEach(message -> {
-                    Assertions.assertThat(message).contains(keyword);
-                });
+                .forEach(message ->
+                    Assertions.assertThat(message).contains(keyword)
+                );
     }
 
 }
