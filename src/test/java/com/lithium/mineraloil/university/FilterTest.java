@@ -35,10 +35,8 @@ public class FilterTest extends BaseUITest {
     void filteredTweetsTest() {
         final String keyword = "the";
         controller.filterBy(keyword);
-        controller.getTweetMessages().forEach(message -> {
-                    System.out.println(message);
-                    Assertions.assertThat(message).contains(keyword);
-                }
+        controller.getTweetMessages().forEach(message ->
+                Assertions.assertThat(message).contains(keyword)
         );
     }
 
