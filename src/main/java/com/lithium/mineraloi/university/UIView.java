@@ -21,11 +21,8 @@ public class UIView {
         return driver.createTextElement(By.xpath("//input[@class='filter-input']"));
     }
 
-    public BaseElement getTimelineMessage() {
-        return driver.createBaseElement(By.xpath("//div[@class='timeline-message']"));
-    }
 
-    public BaseElement getTweetMessages() {
+    public BaseElement getTimelineContent() {
         return driver.createBaseElement(By.xpath("//div[@class='timeline-message']"));
     }
 }
