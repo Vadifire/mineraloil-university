@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 
 public class UIView {
     private Driver driver;
+    private final String homeTimelineBase = "//div[@class='home-timeline timeline-component']";
 
     public UIView() {
         driver = DriverManager.INSTANCE.getDriver();
@@ -21,8 +22,11 @@ public class UIView {
         return driver.createTextElement(By.xpath("//input[@class='filter-input']"));
     }
 
+    public BaseElement getTimelineMessage() {
+        return driver.createBaseElement(By.xpath(homeTimelineBase + "//div[@class='timeline-message']"));
+    }
 
-    public BaseElement getTimelineContent() {
-        return driver.createBaseElement(By.xpath("//div[@class='timeline-message']"));
+    public BaseElement getTweetMessages() {
+        return driver.createBaseElement(By.xpath(homeTimelineBase + "//div[@class='message']"));
     }
 }

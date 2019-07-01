@@ -18,11 +18,11 @@ public class UIController {
     }
 
     public String getTimelineMessage() {
-        return view.getTimelineContent().getText();
+        return view.getTimelineMessage().getText();
     }
 
     public List<String> getTweetMessages() {
-        return view.getTimelineContent()
+        return view.getTweetMessages()
                 .toList()
                 .stream()
                 .map(BaseElement::getText)
