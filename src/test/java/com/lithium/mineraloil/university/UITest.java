@@ -58,7 +58,7 @@ public class UITest extends BaseUITest {
         );
     }
 
-    @DisplayName("Should post tweet and display success or message")
+    @DisplayName("Should post tweet and display success or error message")
     @Test
     void postTweetTest() {
         controller.selectTab(TabsEnum.POST_TAB.getValue());
@@ -71,4 +71,5 @@ public class UITest extends BaseUITest {
         final String postResult = controller.getPostResult();
         Assertions.assertThat((postResult.equals(POST_SUCCESS)) || postResult.equals(POST_FAILURE)).isTrue();
     }
+
 }
