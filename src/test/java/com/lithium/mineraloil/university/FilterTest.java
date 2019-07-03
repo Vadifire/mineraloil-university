@@ -1,7 +1,7 @@
 package com.lithium.mineraloil.university;
 
+import com.lithium.mineraloi.university.TabsEnum;
 import com.lithium.mineraloi.university.UIController;
-import com.lithium.mineraloi.university.UIView;
 import com.lithium.mineraloi.university.browser.BaseUITest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,14 +14,13 @@ public class FilterTest extends BaseUITest {
 
     @BeforeAll
     static void setup() {
-        /* Setup Browser Driver */
         controller = new UIController();
-        controller.selectTab(UIView.HOME_TAB);
+        controller.selectTab(TabsEnum.HOME_TAB.getValue());
     }
 
     @DisplayName("Should display no results message when no tweets match filter")
     @Test
-    void missingResultTest() {
+    void noResultsForFilterTest() {
         final String NO_RESULTS_MESSAGE = "No tweets match the filter.";
         controller.filterBy("Expect no tweet to contain this 1232139128");
         Assertions.assertThat(controller.getTimelineMessage()).isEqualTo(NO_RESULTS_MESSAGE);
@@ -29,12 +28,11 @@ public class FilterTest extends BaseUITest {
 
     @DisplayName("Should display tweets that match the filter")
     @Test
-    void filteredTweetsTest() {
+    void filterTweetsTest() {
         final String keyword = "the";
         controller.filterBy(keyword);
         controller.getTweetMessages().forEach(message ->
                 Assertions.assertThat(message).contains(keyword)
         );
     }
-
 }
