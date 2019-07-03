@@ -36,6 +36,6 @@ public class UIView {
     }
 
     public BaseElement getTabLink(int index) {
-        return driver.createBaseElement(By.xpath("//ul[@role='tablist']//li[" + index + "]//a"));
+        return driver.createBaseElement(By.xpath(String.format("//ul[@role='tablist']//li[%d]//a", index)));
     }
 }
