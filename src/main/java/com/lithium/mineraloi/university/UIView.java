@@ -7,6 +7,9 @@ import com.lithium.mineraloil.selenium.elements.TextElement;
 import org.openqa.selenium.By;
 
 public class UIView {
+
+    public static final int HOME_TAB = 1;
+
     private Driver driver;
     private final String homeTimelineBase = "//div[@class='home-timeline timeline-component']";
 
@@ -30,5 +33,9 @@ public class UIView {
     public BaseElement getTweetMessages() {
         return driver.createBaseElement(By.xpath(String.format("%s//div[@class='message']",
                 homeTimelineBase)));
+    }
+
+    public BaseElement getTabLink(int index) {
+        return driver.createBaseElement(By.xpath("//ul[@role='tablist']//li[" + index + "]//a"));
     }
 }

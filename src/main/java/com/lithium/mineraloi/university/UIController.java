@@ -17,6 +17,10 @@ public class UIController {
         view.getFilterButton().click();
     }
 
+    public void selectTab(int index) {
+        view.getTabLink(index).click();
+    }
+
     public String getTimelineMessage() {
         return view.getTimelineMessage().getText();
     }
@@ -28,4 +32,5 @@ public class UIController {
                 .map(BaseElement::getText)
                     .collect(Collectors.toList());
     }
+
 }

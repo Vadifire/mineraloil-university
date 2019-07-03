@@ -1,6 +1,7 @@
 package com.lithium.mineraloil.university;
 
 import com.lithium.mineraloi.university.UIController;
+import com.lithium.mineraloi.university.UIView;
 import com.lithium.mineraloi.university.browser.BaseUITest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,6 +16,7 @@ public class FilterTest extends BaseUITest {
     static void setup() {
         /* Setup Browser Driver */
         controller = new UIController();
+        controller.selectTab(UIView.HOME_TAB);
     }
 
     @DisplayName("Should display no results message when no tweets match filter")
