@@ -45,7 +45,7 @@ public class UITest extends BaseUITest {
     void homeTweetsTest() {
         controller.selectTab(TabsEnum.HOME_TAB.getValue());
         controller.getTweets().forEach(tweet ->
-                Assertions.assertThat(controller.getMessageForTweet(tweet).length() > 0).isTrue()
+                Assertions.assertThat(controller.getMessageForTweet(tweet)).isNotEmpty()
         );
     }
 
@@ -54,22 +54,35 @@ public class UITest extends BaseUITest {
     void userTweetsTest() {
         controller.selectTab(TabsEnum.USER_TAB.getValue());
         controller.getTweets().forEach(tweet ->
-                Assertions.assertThat(controller.getMessageForTweet(tweet).length() > 0).isTrue()
+                Assertions.assertThat(controller.getMessageForTweet(tweet)).isNotEmpty()
         );
     }
 
-    @DisplayName("Should post tweet and display success or error message")
+    @DisplayName("Should post tweet and show success message")
     @Test
-    void postTweetTest() {
+    void postTweetSuccessTest() {
         controller.selectTab(TabsEnum.POST_TAB.getValue());
         final String POST_SUCCESS = "Successfully posted tweet.";
-        final String POST_FAILURE = "Could not post tweet.";
         final byte[] array = new byte[100];
         new Random().nextBytes(array); // Random 100 characters (expect no status duplicate)
         final String randomTweet = new String(array, Charset.forName("UTF-8"));
         controller.postTweet(randomTweet);
         final String postResult = controller.getPostResult();
-        Assertions.assertThat((postResult.equals(POST_SUCCESS)) || postResult.equals(POST_FAILURE)).isTrue();
+        Assertions.assertThat(postResult).isEqualTo(POST_SUCCESS);
+    }
+
+    @DisplayName("Should should failure message when trying to post duplicate tweet")
+    @Test
+    void postTweetFailure() {
+        final String POST_FAILURE = "Could not post tweet.";
+        controller.selectTab(TabsEnum.POST_TAB.getValue());
+        final String duplicateTweet = "a";
+        for (int i = 0; i < 2; i++) {
+            controller.postTweet(duplicateTweet);
+        }
+        final String postResult = controller.getPostResult();
+        Assertions.assertThat(postResult).isEqualTo(POST_FAILURE);
+
     }
 
 }
