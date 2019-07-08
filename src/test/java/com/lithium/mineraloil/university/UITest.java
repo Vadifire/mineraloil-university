@@ -77,9 +77,8 @@ public class UITest extends BaseUITest {
         controller.selectTab(TabsEnum.POST_TAB.getValue());
         final String POST_FAILURE = "Could not post tweet.";
         final String duplicateTweet = "a";
-        for (int i = 0; i < 2; i++) {
-            controller.postTweet(duplicateTweet);
-        }
+        controller.postTweet(duplicateTweet);
+        controller.postTweet(duplicateTweet);
         final String postResult = controller.getPostResult();
         Assertions.assertThat(postResult).isEqualTo(POST_FAILURE);
 
