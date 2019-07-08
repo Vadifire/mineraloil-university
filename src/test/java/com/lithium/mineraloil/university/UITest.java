@@ -74,8 +74,8 @@ public class UITest extends BaseUITest {
     @DisplayName("Should should failure message when trying to post duplicate tweet")
     @Test
     void postTweetFailure() {
-        final String POST_FAILURE = "Could not post tweet.";
         controller.selectTab(TabsEnum.POST_TAB.getValue());
+        final String POST_FAILURE = "Could not post tweet.";
         final String duplicateTweet = "a";
         for (int i = 0; i < 2; i++) {
             controller.postTweet(duplicateTweet);
