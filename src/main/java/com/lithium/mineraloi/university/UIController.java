@@ -17,6 +17,10 @@ public class UIController {
         view.getFilterButton().click();
     }
 
+    public void selectTab(int index) {
+        view.getTabLink(index).click();
+    }
+
     public String getTimelineMessage() {
         return view.getTimelineMessage().getText();
     }
@@ -28,4 +32,22 @@ public class UIController {
                 .map(BaseElement::getText)
                     .collect(Collectors.toList());
     }
+
+    public List<BaseElement> getTweets() {
+        return view.getTweets().toList();
+    }
+
+    public String getMessageForTweet(BaseElement tweet) {
+        return view.getMessageForTweet(tweet).getText();
+    }
+
+    public void postTweet(String message) {
+        view.getTweetInput().type(message);
+        view.getPostButton().click();
+    }
+
+    public String getPostResult() {
+        return view.getPostResult().getText();
+    }
+
 }
